@@ -1,0 +1,63 @@
+
+/* CARD */
+.auth-card {
+    -fx-background-color: white;
+    -fx-padding: 25;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 20, 0, 0, 8);
+}
+
+/* TEXT */
+.auth-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.auth-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #777;
+}
+
+.auth-error {
+    -fx-font-size: 11px;
+    -fx-text-fill: red;
+}
+
+/* INPUT */
+.auth-input {
+    -fx-pref-height: 35;
+    -fx-background-radius: 6;
+}
+
+/* BUTTON PRIMARY */
+.auth-button-primary {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-pref-width: 220;
+    -fx-pref-height: 38;
+}
+
+/* BUTTON SUCCESS */
+.auth-button-success {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-pref-width: 220;
+    -fx-pref-height: 38;
+}
+
+/* LINK */
+.auth-link-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4a90e2;
+    -fx-font-size: 11px;
+}
+
+/* FOOTER */
+.auth-footer {
+    -fx-font-size: 10px;
+    -fx-text-fill: #aaa;
+}

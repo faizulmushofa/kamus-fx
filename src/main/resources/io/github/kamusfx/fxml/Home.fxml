@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="io.github.kamusfx.controller.HomeController"
+            prefHeight="500.0" prefWidth="800.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #4a90e2, #145DA0);">
+
+    <children>
+
+        <HBox AnchorPane.topAnchor="20.0"
+              AnchorPane.bottomAnchor="20.0"
+              AnchorPane.leftAnchor="20.0"
+              AnchorPane.rightAnchor="20.0"
+              spacing="15">
+
+            <!-- LEFT SIDEBAR -->
+            <VBox prefWidth="240"
+                  spacing="10"
+                  style="-fx-background-color: white;
+                         -fx-padding: 15;
+                         -fx-background-radius: 14;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 20, 0, 0, 5);">
+
+                <Label text="📚 Dictionary"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+                <!-- LANGUAGE TOGGLE -->
+                <HBox spacing="10">
+
+                    <ToggleButton fx:id="indoToggle"
+                                  text="ID"
+                                  selected="true"
+                                  style="-fx-background-color: #4a90e2;
+                                         -fx-text-fill: white;
+                                         -fx-font-weight: bold;
+                                         -fx-background-radius: 6;
+                                         -fx-border-radius: 6;
+                                         -fx-border-color: #4a90e2;
+                                         -fx-pref-width: 60;
+                                         -fx-pref-height: 30;" />
+
+                    <ToggleButton fx:id="engToggle"
+                                  text="EN"
+                                  style="-fx-background-color: transparent;
+                                         -fx-text-fill: #4a90e2;
+                                         -fx-font-weight: bold;
+                                         -fx-background-radius: 6;
+                                         -fx-border-radius: 6;
+                                         -fx-border-color: #4a90e2;
+                                         -fx-pref-width: 60;
+                                         -fx-pref-height: 30;" />
+
+                </HBox>
+
+                <!-- QUICK PROMPT -->
+                <Label text="Quick Search"
+                       style="-fx-font-size: 12px; -fx-text-fill: #555;" />
+
+                <TextField fx:id="sidePromptField"
+                           promptText="Cari kata..."
+                           style="-fx-pref-height: 32;
+                                  -fx-background-radius: 6;" />
+
+                <Button fx:id="sideSearchButton"
+                        text="Search"
+                        style="-fx-background-color: #4a90e2;
+                               -fx-text-fill: white;
+                               -fx-font-size: 11px;
+                               -fx-background-radius: 6;
+                               -fx-pref-height: 32;">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Button>
+
+                <Separator />
+
+                <!-- WORD LIST -->
+                <TextArea fx:id="quickSearchResult"
+                          VBox.vgrow="ALWAYS"
+                          style="-fx-background-radius: 8;" />
+
+            </VBox>
+
+            <!-- RIGHT MAIN PANEL -->
+            <VBox spacing="12"
+                  style="-fx-background-color: white;
+                         -fx-padding: 20;
+                         -fx-background-radius: 14;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 20, 0, 0, 5);">
+
+                <Label text="📝 Sentence Translator"
+                       style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+                <TextArea fx:id="inputArea"
+                          promptText="Masukkan kalimat Bahasa Indonesia / English..."
+                          prefRowCount="5"
+                          style="-fx-background-radius: 8;" />
+
+                <Button fx:id="translateButton"
+                        text="Translate"
+                        style="-fx-background-color: #4a90e2;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 8;
+                               -fx-pref-height: 40;">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Button>
+
+                <Separator />
+
+                <Label text="Result"
+                       style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+
+                <TextArea fx:id="resultArea"
+                          editable="false"
+                          wrapText="true"
+                          style="-fx-background-radius: 8;
+                                 -fx-control-inner-background: #f7f9fc;" />
+
+            </VBox>
+
+        </HBox>
+
+    </children>
+
+</AnchorPane>

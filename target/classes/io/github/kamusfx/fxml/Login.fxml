@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom right, #4a90e2, #145DA0);" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.kamusfx.controller.LoginController">
+
+    <children>
+
+        <!-- FULL CENTER WRAPPER -->
+        <StackPane AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="30.0">
+
+            <!-- CARD -->
+            <VBox alignment="CENTER" maxWidth="340" spacing="12" style="-fx-background-color: white;                          -fx-padding: 30;                          -fx-background-radius: 14;                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 25, 0, 0, 10);">
+
+                <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="📘 Kamus App" />
+
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #777;" text="Masuk untuk melanjutkan" />
+
+                <Separator />
+
+                <TextField fx:id="loginUsernameField" promptText="Username" style="-fx-pref-height: 36; -fx-background-radius: 6;" />
+
+                <PasswordField fx:id="loginPasswordField" promptText="Password" style="-fx-pref-height: 36; -fx-background-radius: 6;" />
+
+                <Label fx:id="loginErrorLabel" style="-fx-font-size: 11px; -fx-text-fill: red;" visible="false" />
+
+                <Button fx:id="loginButton" style="-fx-background-color: #4a90e2;                                -fx-text-fill: white;                                -fx-font-weight: bold;                                -fx-background-radius: 6;                                -fx-pref-width: 240;                                -fx-pref-height: 40;" text="Login">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+
+                <Button fx:id="goToRegisterButton" style="-fx-background-color: transparent;                                -fx-text-fill: #4a90e2;                                -fx-font-size: 11px;" text="Belum punya akun? Register">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+
+                <Label style="-fx-font-size: 10px; -fx-text-fill: #aaa;" text="© 2026 KamusFX" />
+
+            </VBox>
+
+        </StackPane>
+
+    </children>
+
+</AnchorPane>
