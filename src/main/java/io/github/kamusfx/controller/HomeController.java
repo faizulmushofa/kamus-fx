@@ -54,6 +54,7 @@ public class HomeController {
         setLang(true);
 
         Platform.runLater(() -> sidePromptField.requestFocus());
+        sentenceTranslateButton();
 
         setLang(langGroup);
         wordtTranslateButton();
@@ -92,6 +93,13 @@ public class HomeController {
         });
     }
 
+    public void sentenceTranslateButton(){
+        translateButton.setOnAction(event -> {
+            SessionService.log("Button Sentence Translate Pressed","Translating Sentence to Translated");
+            translateSentence();
+        });
+    }
+
     public void translate() {
         String text = sidePromptField.getText();
         System.out.println("Kata yang dicari : " + text);
@@ -116,4 +124,32 @@ public class HomeController {
 
         quickSearchResult.setText(translation);
     }
+
+    public void translateSentence() {
+        String text = inputArea.getText();
+        if (text == null || text.trim().isEmpty()) {
+            return;
+        }
+
+
+        String cleanedText = text.trim().toLowerCase();
+
+        String translation;
+        if (this.indo) {
+            SessionService.log("Translate Button pressed","translate into Indo");
+            translation = dictionaryService.translateSentenceToIndonesian(cleanedText);
+        } else {
+            SessionService.log("Translate Button pressed","translate into English");
+            translation = dictionaryService.translateSentenceToEnglish(cleanedText);
+        }
+
+        if (translation == null || translation.isEmpty()) {
+            translation = "Kata tidak ditemukan";
+        }
+
+        resultArea.setText(translation);
+
+    }
+
+
 }

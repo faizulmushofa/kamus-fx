@@ -7,6 +7,8 @@ import io.github.kamusfx.service.DictionaryService;
 import lombok.RequiredArgsConstructor;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -63,12 +65,33 @@ public class DictionaryServiceImp implements DictionaryService {
 
     @Override
     public String translateSentenceToEnglish(String sentence) {
-        return "";
+
+        List<String> cleanedSentence = new ArrayList<>();
+
+        List<String> dirtySentence = new ArrayList<>(Arrays.asList(sentence.split(" ")));
+
+        for (String word : dirtySentence) {
+            word = word.toLowerCase();
+            String cleanedWord = IndoToEnglish.get(word);
+            cleanedSentence.add(cleanedWord);
+        }
+
+        return cleanedSentence.toString();
     }
 
     @Override
     public String translateSentenceToIndonesian(String sentence) {
-        return "";
+        List<String> cleanedSentence = new ArrayList<>();
+
+        List<String> dirtySentence = new ArrayList<>(Arrays.asList(sentence.split(" ")));
+
+        for (String word : dirtySentence) {
+            word = word.toLowerCase();
+            String cleanedWord = EnglishToIndo.get(word);
+            cleanedSentence.add(cleanedWord);
+        }
+
+        return cleanedSentence.toString();
     }
 
 }
