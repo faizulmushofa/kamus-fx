@@ -15,6 +15,20 @@ import lombok.RequiredArgsConstructor;
 
 import java.sql.SQLException;
 
+/**
+ * Controller untuk halaman registrasi pengguna pada aplikasi Kamus FX.
+ *
+ * Bertanggung jawab menangani interaksi UI pada form registrasi,
+ * termasuk validasi input, pemanggilan service autentikasi,
+ * serta navigasi ke halaman login setelah registrasi berhasil.
+ *
+ * Controller ini di-manage oleh MiniContainer (@Auto) dan menggunakan
+ * AuthService sebagai dependency utama untuk proses registrasi.
+ *
+ * @author its_me20
+ * @version 1.0
+ * @since 2026 - 05 -20
+ */
 @Auto
 @RequiredArgsConstructor
 public class RegisterController {
@@ -73,7 +87,14 @@ public class RegisterController {
     }
 
 
-
+    /**
+     * Menangani proses registrasi pengguna dari form UI.
+     *
+     * Melakukan validasi input, memanggil service registrasi,
+     * dan mengarahkan pengguna ke halaman login jika berhasil.
+     *
+     * @throws SQLException jika terjadi kesalahan pada proses registrasi di database
+     */
     protected void register() throws SQLException {
         String username = registerUsernameField.getText();
         String password = registerPasswordField.getText();

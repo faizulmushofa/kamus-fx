@@ -1,5 +1,14 @@
 package io.github.kamusfx.repository.Dictionary;
 
+/**
+ * Kelas konstanta kueri SQL untuk tabel dictionaries
+ *
+ * berisi kueri-kueri SQL untuk operasi CRUD pada tabel dictionaries.
+ *
+ * @author its_me20
+ * @version 1.0
+ * @since 2026-05-20
+ */
 public class DictionaryQuery {
     public static final String FIND_ALL =
             "SELECT * FROM dictionaries";

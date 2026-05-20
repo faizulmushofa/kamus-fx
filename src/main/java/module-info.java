@@ -1,4 +1,5 @@
 open module io.github.kamusfx {
+
     requires javafx.controls;
     requires javafx.fxml;
 

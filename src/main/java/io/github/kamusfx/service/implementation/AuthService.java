@@ -1,6 +1,7 @@
 package io.github.kamusfx.service.implementation;
 
 import io.github.kamusfx.MiniContainer.Auto;
+import io.github.kamusfx.model.Session;
 import io.github.kamusfx.model.User;
 import io.github.kamusfx.service.PassswordService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ public class AuthService {
 
     private final UserServiceImp userService;
     private final PassswordService passswordService;
+    private final SessionService sessionService;
 
 
     public boolean login(String username, String password) throws SQLException {
@@ -23,13 +25,16 @@ public class AuthService {
         }
         User user = userService.getUserByUsername(username);
 
+
         if (user == null) {
             return false;
         }
 
         if (passswordService.verify(password, user.getPassword())) {
+            sessionService.init(user);
             return true;
         }
+
 
         return false;
     }

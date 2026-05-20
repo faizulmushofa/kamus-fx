@@ -10,7 +10,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class UserActivity {
+    private Long id;
     private String action;
     private String detail;
-    private long timestamp;
+    private String timestamp;
+
+    @Override
+    public String toString() {
+        return id + " | " + action + " | " + detail + " | " + timestamp;
+    }
 }

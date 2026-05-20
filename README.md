@@ -156,7 +156,7 @@ Untuk mempermudah manajemen ketergantungan antar-kelas, proyek ini mengimplement
 * **Bahasa Pemrograman**: Java 21
 * **Framework GUI**: JavaFX 21.0.6 (javafx-controls, javafx-fxml)
 * **Database**: SQLite (menggunakan Driver `org.xerial:sqlite-jdbc`)
-* **Keamanan**: jBCrypt (untuk hashing password menggunakan Blowfish algorithm)
+* **Keamanan**: jBCrypt (untuk hashing password menggunakan BCrypt algorithm)
 * **Metadata & DI Scan**: Reflections library (`org.reflections`)
 * **Boilerplate Reduction**: Project Lombok
 * **UI Controls**: ControlsFX & BootstrapFX

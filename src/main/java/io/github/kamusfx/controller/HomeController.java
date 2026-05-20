@@ -2,6 +2,7 @@ package io.github.kamusfx.controller;
 
 import io.github.kamusfx.MiniContainer.Auto;
 import io.github.kamusfx.service.DictionaryService;
+import io.github.kamusfx.service.implementation.SessionService;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -101,14 +102,13 @@ public class HomeController {
         
         String translation;
         if (this.indo) {
-            System.out.println("Menerjemahkan dari Indonesia ke Inggris...");
+            SessionService.log("Translate Button pressed","translate into Indo");
             translation = dictionaryService.translateToIndonesian(cleanedText);
         } else {
-            System.out.println("Menerjemahkan dari Inggris ke Indonesia...");
+            SessionService.log("Translate Button pressed","translate into English");
             translation = dictionaryService.translateToEnglish(cleanedText);
         }
 
-        System.out.println("Hasil terjemahan : " + translation);
 
         if (translation == null || translation.isEmpty()) {
             translation = "Kata tidak ditemukan";

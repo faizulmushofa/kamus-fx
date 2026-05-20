@@ -14,6 +14,18 @@ import java.util.List;
 
 import io.github.kamusfx.MiniContainer.Auto;
 
+
+/**
+ * Repository untuk akses data user ke database
+ *
+ * bertanggung jawab menangani operasi penyimpanan
+ * dan pengambilan data word dari database Sqlite,termasuk
+ * pencarian dan penyimpanan
+ *
+ * @author its_me20
+ * @version 1.0
+ * @since 2026-05-20
+ */
 @Auto
 public class UserRepository {
     private final Connection connection;
@@ -22,6 +34,12 @@ public class UserRepository {
         this.connection = SqliteDatabaseImp.getConnection();
     }
 
+    /**
+     * Mengembalikan semua nilai user dari database
+     *
+     * @return list dari semua entity user
+     * @throws SQLException apabila database Error
+     */
     public List<User> findAll() throws SQLException {
         List<User> users = new ArrayList<>();
 
@@ -38,7 +56,14 @@ public class UserRepository {
 
         return users;
     }
-
+    /**
+     * Mencari di database dengan kata kunci username
+     *
+     * @param username
+     *
+     * @return Obj user jika di temukan dan null jika tidak
+     * @throws SQLException apabila terjadi kesalahan pada database
+     */
     public User findByUsername(String username) throws SQLException {
         try(PreparedStatement statement = connection.prepareStatement(UserQuery.FIND_BY_USERNAME)){
             statement.setString(1, username);
@@ -50,6 +75,13 @@ public class UserRepository {
         return null;
     }
 
+    /**
+     * Mencari user berdasarkan ID uniknya di database.
+     *
+     * @param id ID user yang akan dicari
+     * @return objek User jika ditemukan, atau null jika tidak ada data
+     * @throws SQLException apabila terjadi kesalahan pada database
+     */
     public User findById(int id) throws SQLException{
         try(PreparedStatement statement = connection.prepareStatement(UserQuery.FIND_BY_ID)){
 
@@ -64,6 +96,12 @@ public class UserRepository {
         return null;
     }
 
+    /**
+     * Menyimpan data user baru ke dalam database.
+     *
+     * @param user objek data User yang akan disimpan
+     * @throws SQLException apabila terjadi kesalahan pada database
+     */
     public void insert(User user) throws SQLException {
         try(PreparedStatement statement = connection.prepareStatement(UserQuery.INSERT)){
             statement.setString(1, user.getUsername());
@@ -75,6 +113,12 @@ public class UserRepository {
         }
     }
 
+    /**
+     * Memperbarui data user yang sudah ada di database.
+     *
+     * @param user objek User berisi data baru untuk diperbarui
+     * @throws SQLException apabila terjadi kesalahan pada database
+     */
     public void update(User user) throws SQLException {
         try(PreparedStatement statement = connection.prepareStatement(UserQuery.UPDATE)){
             statement.setString(1, user.getUsername());
@@ -88,6 +132,12 @@ public class UserRepository {
 
     }
 
+    /**
+     * Menghapus data user dari database berdasarkan ID.
+     *
+     * @param user objek User yang akan dihapus dari database
+     * @throws SQLException apabila terjadi kesalahan pada database
+     */
     public void delete(User user) throws SQLException {
         try(PreparedStatement statement = connection.prepareStatement(UserQuery.DELETE)){
             statement.setString(1, String.valueOf(user.getId()));
@@ -100,6 +150,13 @@ public class UserRepository {
 
     private static final DateTimeFormatter SQLITE_DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
+    /**
+     * Mengubah data ResultSet menjadi objek User.
+     *
+     * @param rs hasil kueri dari database
+     * @return objek User yang telah dipetakan
+     * @throws SQLException apabila terjadi kesalahan saat membaca ResultSet
+     */
     private User mapResultSet(ResultSet rs) throws SQLException {
         User user = new User();
 

@@ -2,20 +2,15 @@ package io.github.kamusfx.model;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-@Builder
-@Setter
-@Getter
-@AllArgsConstructor
-public class Session {
 
-    private User user;
-    private final List<UserActivity> activities;
+public abstract class Session {
 
-    public void log(String action, String detail) {
-        activities.add(new UserActivity(action, detail, System.currentTimeMillis()));
-    }
+    protected static User user;
 
+    protected static List<UserActivity> activities = new ArrayList<>();
 
 }

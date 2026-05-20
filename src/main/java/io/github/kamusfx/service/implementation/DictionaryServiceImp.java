@@ -29,20 +29,20 @@ public class DictionaryServiceImp implements DictionaryService {
             IndoToEnglish.put(dictionary.getIndonesia(), dictionary.getEnglish());
             EnglishToIndo.put(dictionary.getEnglish(), dictionary.getIndonesia());
         });
-        logEntry();
+        //logEntry();
         System.out.println("Dictionary Loaded Successfully");
     }
 
-    private void logEntry() {
-        System.out.println("===== Dictionaries Loaded In Indonesia ======");
-        for (String key : IndoToEnglish.keySet()) {
-            System.out.println(key + " : " + IndoToEnglish.get(key));
-        }
-        System.out.println("===== Dictionaries Loaded In English ======");
-        for (String key : EnglishToIndo.keySet()) {
-            System.out.println(key + " : " + EnglishToIndo.get(key));
-        }
-    }
+//    private void logEntry() {
+//        System.out.println("===== Dictionaries Loaded In Indonesia ======");
+//        for (String key : IndoToEnglish.keySet()) {
+//            System.out.println(key + " : " + IndoToEnglish.get(key));
+//        }
+//        System.out.println("===== Dictionaries Loaded In English ======");
+//        for (String key : EnglishToIndo.keySet()) {
+//            System.out.println(key + " : " + EnglishToIndo.get(key));
+//        }
+//    }
 
     @Override
     public void insert(Word word) throws SQLException {
@@ -51,17 +51,13 @@ public class DictionaryServiceImp implements DictionaryService {
 
     @Override
     public String translateToEnglish(String indonesian) {
-        System.out.println("Translating Indonesian to English...");
         String result = IndoToEnglish.get(indonesian);
-        System.out.println("Trasnlated : " + result + " From " + indonesian);
         return result;
     }
 
     @Override
     public String translateToIndonesian(String english) {
-        System.out.println("Translating English to Indonesian...");
         String result = EnglishToIndo.get(english);
-        System.out.println("Traslated :" + result + "From" + english);
         return result;
     }
 

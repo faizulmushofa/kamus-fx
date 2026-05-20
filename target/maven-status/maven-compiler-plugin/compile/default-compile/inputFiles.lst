@@ -3,6 +3,7 @@
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/controller/HomeController.java
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/MiniContainer/RunnableApp.java
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/service/implementation/UserServiceImp.java
+/Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/service/implementation/SessionService.java
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/repository/User/UserRepository.java
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/view/SceneManager.java
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/service/implementation/AuthService.java
@@ -17,7 +18,6 @@
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/MiniContainer/Auto.java
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/model/User.java
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/MiniContainer/AppRunner.java
-/Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/Launcher.java
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/module-info.java
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/service/implementation/DictionaryServiceImp.java
 /Users/faizulmushofa/Documents/Semester_empat/Struktur_Data/Kelas/kamus-fx/src/main/java/io/github/kamusfx/service/DictionaryService.java
