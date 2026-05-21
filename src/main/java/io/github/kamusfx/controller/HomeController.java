@@ -4,7 +4,6 @@ import io.github.kamusfx.MiniContainer.Auto;
 import io.github.kamusfx.service.DictionaryService;
 import io.github.kamusfx.service.implementation.SessionService;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import lombok.RequiredArgsConstructor;
@@ -54,6 +53,7 @@ public class HomeController {
         setLang(true);
 
         Platform.runLater(() -> sidePromptField.requestFocus());
+        Platform.runLater(() -> inputArea.requestFocus());
         sentenceTranslateButton();
 
         setLang(langGroup);
@@ -86,21 +86,20 @@ public class HomeController {
 
     public void wordtTranslateButton(){
         sideSearchButton.setOnAction(event -> {
-            translate();
+            translateWord();
         });
         sidePromptField.setOnAction(event -> {
-            translate();
+            translateWord();
         });
     }
 
     public void sentenceTranslateButton(){
         translateButton.setOnAction(event -> {
-            SessionService.log("Button Sentence Translate Pressed","Translating Sentence to Translated");
             translateSentence();
         });
     }
 
-    public void translate() {
+    public void translateWord() {
         String text = sidePromptField.getText();
         System.out.println("Kata yang dicari : " + text);
         if (text == null || text.trim().isEmpty()) {
@@ -110,10 +109,10 @@ public class HomeController {
         
         String translation;
         if (this.indo) {
-            SessionService.log("Translate Button pressed","translate into Indo");
+            SessionService.log("Translate Word Button pressed","translate into Indo");
             translation = dictionaryService.translateToIndonesian(cleanedText);
         } else {
-            SessionService.log("Translate Button pressed","translate into English");
+            SessionService.log("Translate Word Button pressed","translate into English");
             translation = dictionaryService.translateToEnglish(cleanedText);
         }
 
@@ -136,10 +135,10 @@ public class HomeController {
 
         String translation;
         if (this.indo) {
-            SessionService.log("Translate Button pressed","translate into Indo");
+            SessionService.log("Translate Sentence Button pressed","translate into Indo");
             translation = dictionaryService.translateSentenceToIndonesian(cleanedText);
         } else {
-            SessionService.log("Translate Button pressed","translate into English");
+            SessionService.log("Translate Sentence Button pressed","translate into English");
             translation = dictionaryService.translateSentenceToEnglish(cleanedText);
         }
 

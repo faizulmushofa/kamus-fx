@@ -11,7 +11,7 @@ Salah satu keunikan proyek ini adalah penggunaan **MiniContainer**, sebuah *depe
 1. **Autentikasi Pengguna & Keamanan**:
    * Fitur **Login** & **Register** untuk membatasi akses aplikasi.
    * Keamanan kata sandi menggunakan enkripsi **Blowfish Hashing (jBCrypt)** sebelum disimpan ke database.
-   * Manajemen sesi aktif menggunakan model `Session` dan log aktivitas pengguna (`UserActivity`).
+   * Manajemen sesi aktif (`SessionService` & `Session`) dan log aktivitas pengguna (`UserActivity`).
 
 2. **Pencarian & Translasi Cepat (Quick Search)**:
    * Translasi satu kata dengan performa instan ($O(1)$ kompleksitas waktu) menggunakan cache in-memory `HashMap`.
@@ -28,6 +28,7 @@ Salah satu keunikan proyek ini adalah penggunaan **MiniContainer**, sebuah *depe
 5. **MiniContainer (Custom Dependency Injection)**:
    * Mengeliminasi pembuatan objek manual (`new`) dan mendukung *Constructor-based Dependency Injection*.
    * Menggunakan refleksi (`org.reflections`) untuk mendeteksi anotasi `@Auto` secara dinamis.
+   * Mengadopsi struktur data `HashMap` sebagai registry internal untuk menyimpan dan mengelola daur hidup objek (bean) secara efisien.
    * Memiliki sistem deteksi ketergantungan melingkar (*Circular Dependency Detection*).
 
 ---
@@ -73,6 +74,7 @@ kamus-fx/
 │   │   │   │   │   ├── implementation/
 │   │   │   │   │   │   ├── AuthService.java
 │   │   │   │   │   │   ├── DictionaryServiceImp.java
+│   │   │   │   │   │   ├── SessionService.java  # Manajemen session & logging aktivitas user
 │   │   │   │   │   │   └── UserServiceImp.java
 │   │   │   │   │   ├── DictionaryService.java
 │   │   │   │   │   ├── PassswordService.java
@@ -123,7 +125,7 @@ graph TD
 ### Penjelasan Komponen:
 1. **View**: Dibangun dengan file FXML dan distyling dengan CSS. Berfungsi murni sebagai presentasi antarmuka.
 2. **Controller**: Menangani event handler dari View (seperti klik tombol atau enter field) dan meneruskan tugas ke Service Layer.
-3. **Service Layer**: Mengandung logika bisnis utama, seperti pencocokan password terenkripsi atau pemformatan teks terjemahan.
+3. **Service Layer**: Mengandung logika bisnis utama, seperti pencocokan password terenkripsi, pemformatan teks terjemahan, serta manajemen session dan logging aktivitas pengguna (`SessionService`).
 4. **Repository Layer**: Menjalankan kueri SQL mentah melalui JDBC ke database SQLite untuk mengambil atau menyimpan entitas.
 5. **MiniContainer**: Membaca anotasi `@Auto`, memetakan dependensi konstruktor dari controller/service/repository, lalu menginstansiasi serta mendistribusikan *instance* bean tersebut secara otomatis.
 
@@ -148,6 +150,7 @@ Untuk mempermudah manajemen ketergantungan antar-kelas, proyek ini mengimplement
   3. Memeriksa parameter konstruktor kelas tersebut.
   4. Secara rekursif mencari instansiasi parameter tersebut di dalam kontainer atau menginstansiasinya terlebih dahulu jika belum dibuat.
   5. Melakukan validasi *circular dependency* dengan melacak status inisialisasi bean menggunakan `Set<Class<?>> creating`.
+  6. Menyimpan dan mengelola instance bean di dalam registry internal berbasis **`HashMap<Class<?>, Object>`** untuk pengambilan instan saat proses *dependency injection* berlangsung.
 
 ---
 
@@ -185,6 +188,6 @@ Pastikan Anda sudah menginstal perkakas berikut pada mesin Anda:
 ---
 
 ## 📝 Catatan Tambahan (Struktur Data)
-Aplikasi ini memanfaatkan struktur data **`HashMap`** bawaan Java untuk pencarian translasi kata. Ketika aplikasi pertama kali berjalan atau setelah login sukses, data kamus dari SQLite akan langsung dibaca dan dimuat sepenuhnya ke dalam memori (*eager loading*). 
-* Memuat seluruh kosakata ke `HashMap<String, String>` (satu untuk ID-EN dan satu untuk EN-ID) menghasilkan pencarian terjemahan kata yang sangat efisien dengan waktu konstan **$O(1)$**, meminimalkan kueri I/O database berulang kali selama translasi cepat berlangsung.
-# kamus-fx
+Aplikasi ini memanfaatkan struktur data **`HashMap`** bawaan Java di beberapa komponen utama:
+* **Translasi Cepat (Cache In-Memory)**: Ketika aplikasi pertama kali berjalan atau setelah login sukses, data kamus dari SQLite akan langsung dibaca dan dimuat sepenuhnya ke dalam memori (*eager loading*). Memuat seluruh kosakata ke `HashMap<String, String>` (satu untuk ID-EN dan satu untuk EN-ID) menghasilkan pencarian terjemahan kata yang sangat efisien dengan waktu konstan **$O(1)$**, meminimalkan kueri I/O database berulang kali selama translasi cepat berlangsung.
+* **Registry MiniContainer**: `MiniContainer` (melalui kelas `BeanManager`) juga mengadopsi **`HashMap<Class<?>, Object>`** sebagai wadah penyimpanan (registry) untuk menyimpan dan mengelola daur hidup semua *instance* bean yang terdaftar. Hal ini memungkinkan kontainer untuk meregistrasi, melacak, dan mengambil bean secara dinamis dengan pencarian berkecepatan konstan $O(1)$.
